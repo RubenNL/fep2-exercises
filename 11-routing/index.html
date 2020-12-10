@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+  <title>Web Components</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/">
+</head>
+
+<style>
+  app-header {
+    grid-area: header;
+  }
+
+  app-navigation {
+    grid-area: navigation;
+  }
+
+  #app {
+    grid-area: app;
+  }
+
+  app-footer {
+    grid-area: footer;
+  }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1.2em;
+    color: #232323;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "header"
+      "navigation"
+      "app"
+      "footer";
+  }
+
+  @media only screen and (min-width: 500px) {
+    body {
+      grid-template-columns: 25% auto;
+      grid-template-areas:
+        "header header header header"
+        "navigation app app app"
+        "footer footer footer footer";
+      grid-template-rows: 120px auto 120px;
+      height: 100vh;
+    }
+  }
+</style>
+
+<body>
+
+  <app-header></app-header>
+  <app-navigation></app-navigation>
+  <div id="app"></div>
+  <app-footer></app-footer>
+
+</body>
+
+<script>
+  // The Redux package assumes `process` exists - mock it here before
+  // the module is loaded.
+  window.process = {
+    env: {
+      NODE_ENV: 'development'
+    }
+  };
+</script>
+
+<script type="module">
+  import "./components/app-footer/app-footer";
+  import "./components/app-header/app-header";
+  import "./components/app-navigation/app-navigation";
+  import './route-to-do-app.js';
+  import './route-stats.js';
+
+</script>
+
+</html>
